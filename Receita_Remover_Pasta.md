@@ -1,10 +1,22 @@
-✅ 1. Criar o script
+🧹 Clean Exim4 Script (Linux)
+
+Script simples para limpar filas e logs do Exim4 automaticamente em servidores Linux.
+
+📌 Objetivo
+
+Este script:
+
+Para o serviço do Exim4
+Remove mensagens da fila
+Limpa logs de mensagens
+Reinicia o serviço
+⚙️ 1. Criando o script
 
 Abra o arquivo:
 
 nano /usr/local/bin/clean_exim.sh
 
-Cole exatamente isso dentro:
+Cole o conteúdo abaixo:
 
 #!/bin/bash
 
@@ -14,38 +26,42 @@ rm -rf /var/spool/exim4/input/*
 rm -rf /var/spool/exim4/msglog/*
 
 systemctl start exim4
-💾 2. Salvar e sair do nano
-
-Depois de colar:
-
-Salvar: CTRL + O → depois ENTER
+💾 2. Salvando e saindo do editor (nano)
+Salvar: CTRL + O → ENTER
 Sair: CTRL + X
-🔐 3. Dar permissão de execução
+🔐 3. Permissão de execução
 
-Agora libera execução do script:
+Dê permissão ao script:
 
 chmod +x /usr/local/bin/clean_exim.sh
-🧪 4. Testar manualmente
+🧪 4. Teste manual
 
-Roda o script pra ver se está funcionando:
+Execute o script para validar funcionamento:
 
 /usr/local/bin/clean_exim.sh
 
-Se não der erro, está ok.
+Se não houver erro, está funcionando corretamente.
 
-⏰ 5. Configurar cron (a cada 5 dias)
+⏰ 5. Automatização com Cron (a cada 5 dias)
 
-Abra o cron:
+Edite o cron:
 
 crontab -e
 
-Agora adicione essa linha:
+Adicione a linha:
 
 0 3 */5 * * /usr/local/bin/clean_exim.sh >/dev/null 2>&1
-📌 O que isso significa
-0 → minuto 0
-3 → 03:00 da manhã
-*/5 → a cada 5 dias
-* * → todos os meses e dias da semana
+📌 Entendendo o agendamento
+Campo	Significado
+0	minuto 0
+3	03:00 da manhã
+*/5	a cada 5 dias
+* *	todos os meses e dias da semana
 
-👉 Ou seja: roda a cada 5 dias às 03:00 da manhã
+👉 Resultado: execução automática a cada 5 dias às 03:00
+
+⚠️ Observação importante
+
+O */5 no cron não significa “intervalo contínuo de 5 dias exatos”, mas sim:
+
+Dia 1, 6, 11, 16, 21, 26...
