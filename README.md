@@ -1,0 +1,1 @@
+# Receita_Apagar_Pasta_Emails_Linux
