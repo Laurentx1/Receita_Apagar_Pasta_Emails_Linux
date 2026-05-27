@@ -1,8 +1,8 @@
-🧹 Clean Exim4 Script (Linux)
+Clean Exim4 Script (Linux)
 
 Script simples para limpar filas e logs do Exim4 automaticamente em servidores Linux.
 
-📌 Objetivo
+Objetivo
 
 Este script:
 
@@ -10,7 +10,7 @@ Para o serviço do Exim4
 Remove mensagens da fila
 Limpa logs de mensagens
 Reinicia o serviço
-⚙️ 1. Criando o script
+ 1. Criando o script
 
 Abra o arquivo:
 
@@ -26,15 +26,15 @@ rm -rf /var/spool/exim4/input/*
 rm -rf /var/spool/exim4/msglog/*
 
 systemctl start exim4
-💾 2. Salvando e saindo do editor (nano)
+2. Salvando e saindo do editor (nano)
 Salvar: CTRL + O → ENTER
 Sair: CTRL + X
-🔐 3. Permissão de execução
+3. Permissão de execução
 
 Dê permissão ao script:
 
 chmod +x /usr/local/bin/clean_exim.sh
-🧪 4. Teste manual
+4. Teste manual
 
 Execute o script para validar funcionamento:
 
@@ -42,7 +42,7 @@ Execute o script para validar funcionamento:
 
 Se não houver erro, está funcionando corretamente.
 
-⏰ 5. Automatização com Cron (a cada 5 dias)
+5. Automatização com Cron (a cada 5 dias)
 
 Edite o cron:
 
@@ -51,16 +51,16 @@ crontab -e
 Adicione a linha:
 
 0 3 */5 * * /usr/local/bin/clean_exim.sh >/dev/null 2>&1
-📌 Entendendo o agendamento
+Entendendo o agendamento
 Campo	Significado
 0	minuto 0
 3	03:00 da manhã
 */5	a cada 5 dias
 * *	todos os meses e dias da semana
 
-👉 Resultado: execução automática a cada 5 dias às 03:00
+Resultado: execução automática a cada 5 dias às 03:00
 
-⚠️ Observação importante
+Observação importante
 
 O */5 no cron não significa “intervalo contínuo de 5 dias exatos”, mas sim:
 
